@@ -1,5 +1,7 @@
 require 'tempfile'
+require 'ostruct'
 require 'qiniu-rs'
+require 'erb'
 
 module BlastOff
   module Services
@@ -80,9 +82,14 @@ module BlastOff
       end
 
       def html_template
-        html_content = <<-EOS
-<a href="itms-services://?action=download-manifest&url=#{base_url}/manifest.plist">Download</a>
-        EOS
+        opts = OpenStruct.new({
+          app_name:  @ipa_file.name,
+          app_version: @ipa_file.version,
+          base_url: base_url
+        })
+        template_file = File.join(File.dirname(File.expand_path(__FILE__)), '../template/index.html.erb')
+
+        ::ERB.new(File.read(template_file)).result(opts.instance_eval {binding})
       end
 
     end
