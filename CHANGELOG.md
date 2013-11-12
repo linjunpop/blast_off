@@ -2,6 +2,7 @@
 
 ## master
 
+* Add QR code to html template.
 * Add html template.
 
 ## [v0.0.1](https://github.com/linjunpop/blast_off/tree/v0.0.1)
