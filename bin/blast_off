@@ -33,7 +33,7 @@ command :qiniu do |c|
       access_key: options[:access_key],
       secret_key: options[:secret_key],
       bucket: options[:bucket]
-    ).generate
+    ).distribute
   end
 end
 

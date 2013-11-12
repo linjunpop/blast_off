@@ -15,7 +15,7 @@ module BlastOff
         )
       end
 
-      def generate
+      def distribute
         manifest_file = Tempfile.new('manifest')
         begin
           manifest_file.write(manifest_template)
