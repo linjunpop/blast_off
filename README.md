@@ -63,6 +63,10 @@ Example:
 
 `$ blast_off qiniu --ipa_file_path=Foobar.ipa --bucket=foobar --access_key=$QINIU_ACCESS_KEY --secret_key=$QINIU_SECRET_KEY`
 
+## Changelog
+
+https://github.com/linjunpop/blast_off/wiki/Changelog
+
 ## Contributing
 
 1. Fork it
