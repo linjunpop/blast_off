@@ -1,0 +1,56 @@
+#!/usr/bin/env ruby
+require 'gli'
+require 'blast_off'
+
+include GLI::App
+
+program_desc 'An iOS beta distribution tool.'
+
+version BlastOff::VERSION
+
+desc 'Qiniu'
+command :qiniu do |c|
+  c.desc 'IPA file path'
+  c.flag :ipa_file_path
+
+  c.desc 'Access Key'
+  c.flag :access_key
+
+  c.desc 'Secret Key'
+  c.flag :secret_key
+
+  c.desc 'bucket'
+  c.flag :bucket
+
+  c.action do |global_options, options, args|
+    help_now!('IPA file is required') unless options[:ipa_file_path]
+    help_now!('Access Key is required') unless options[:access_key]
+    help_now!('Secret Key is required') unless options[:secret_key]
+    help_now!('Bucket is required') unless options[:bucket]
+
+    BlastOff::Services::Qiniu.new(
+      ipa_file_path: options[:ipa_file_path],
+      access_key: options[:access_key],
+      secret_key: options[:secret_key],
+      bucket: options[:bucket]
+    ).generate
+  end
+end
+
+pre do |global,command,options,args|
+  true
+end
+
+post do |global,command,options,args|
+  # Post logic here
+  # Use skips_post before a command to skip this
+  # block on that command only
+end
+
+on_error do |exception|
+  # Error logic here
+  # return false to skip default error handling
+  true
+end
+
+exit run(ARGV)
