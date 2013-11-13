@@ -39,7 +39,7 @@
   <body>
     <div class="container">
       <h1><%= app_name %></h1>
-      <img src="http://chart.apis.google.com/chart?cht=qr&chs=300x300&chl=<%= base_url %>/index.html" alt="" />
+      <img src="http://api.qrserver.com/v1/create-qr-code/?size=250x250&data=<%= base_url %>/index.html" alt="" />
       <h2>Version: <%= app_version %></h2>
       <p>
         <a class="button" href="itms-services://?action=download-manifest&url=<%= base_url %>/manifest.plist">Install</a>
