@@ -12,6 +12,7 @@ module BlastOff
         @qiniu_bucket = bucket
 
         ::Qiniu::RS.establish_connection!(
+          enable_debug: false,
           access_key: access_key,
           secret_key: secret_key
         )

@@ -2,6 +2,8 @@
 
 ## master
 
+* Disable debug mode of qiniu-rs gem.
+
 ## [v0.1.0](https://github.com/linjunpop/blast_off/tree/v0.1.0)
 
 * Add html template.
