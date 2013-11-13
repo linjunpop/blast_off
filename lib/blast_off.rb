@@ -1,4 +1,3 @@
-require 'rainbow'
 require 'ipa_reader'
 
 require "blast_off/version"

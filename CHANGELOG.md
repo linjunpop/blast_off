@@ -2,6 +2,7 @@
 
 ## master
 
+* Let services' `generate` method return URL address.
 * Use [goQR.me](http://goqr.me) to generate QR code, as Google chart infographics has been deprecated.
 * Disable debug mode of qiniu-rs gem.
 

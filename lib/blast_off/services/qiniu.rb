@@ -41,7 +41,7 @@ module BlastOff
 
         upload(@ipa_file_path, "#{@ipa_file.name}.ipa")
 
-        puts "#{base_url}/index.html".foreground(:white).background(:blue)
+        "#{base_url}/index.html"
       end
 
       private
