@@ -2,6 +2,10 @@
 
 An iOS beta distribution tool.
 
+[![Build Status](https://travis-ci.org/linjunpop/blast_off.png?branch=master)](https://travis-ci.org/linjunpop/blast_off)
+[![Gem Version](https://badge.fury.io/rb/blast_off.png)](http://badge.fury.io/rb/blast_off)
+[![Code Climate](https://codeclimate.com/github/linjunpop/blast_off.png)](https://codeclimate.com/github/linjunpop/blast_off)
+
 Supported services:
 
 * Qiniu(http://qiniu.com)
