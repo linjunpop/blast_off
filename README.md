@@ -69,6 +69,10 @@ Example:
 
 ## [Changelog](CHANGELOG.md)
 
+## Similar projects:
+
+* https://github.com/lexrus/ios-makefile
+
 ## Contributing
 
 1. Fork it
