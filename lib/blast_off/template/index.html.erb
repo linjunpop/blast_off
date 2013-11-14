@@ -39,10 +39,10 @@
   <body>
     <div class="container">
       <h1><%= app_name %></h1>
-      <img src="http://api.qrserver.com/v1/create-qr-code/?size=250x250&data=<%= base_url %>/index.html" alt="" />
+      <img src="http://api.qrserver.com/v1/create-qr-code/?size=250x250&data=<%= manifest_plist_url %>" alt="" />
       <h2>Version: <%= app_version %></h2>
       <p>
-        <a class="button" href="itms-services://?action=download-manifest&url=<%= base_url %>/manifest.plist">Install</a>
+        <a class="button" href="itms-services://?action=download-manifest&url=<%= manifest_plist_url %>">Install</a>
       </p>
     </div>
   </body>
