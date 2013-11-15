@@ -12,6 +12,7 @@ module BlastOff
         @bucket = bucket
 
         ::Qiniu::RS.establish_connection!(
+          enable_debug: false,
           access_key: access_key,
           secret_key: secret_key
         )
@@ -19,9 +20,21 @@ module BlastOff
       end
 
       def distribute
-        upload_string(template.manifest_plist("#{base_url}/#{@ipa_file.name}.ipa"), 'manifest.plist')
-        upload_string(template.html("#{base_url}/manifest.plist"), 'index.html')
-        upload_file(@ipa_file_path, "#{@ipa_file.name}.ipa")
+        upload_string(
+          template.manifest_plist("#{base_url}/#{@ipa_file.name}.ipa"),
+          'manifest.plist',
+          'application/octet-stream'
+        )
+        upload_string(
+          template.html("#{base_url}/manifest.plist"),
+          'index.html',
+          'text/html'
+        )
+        upload_file(
+          @ipa_file_path,
+          "#{@ipa_file.name}.ipa",
+          'application/octet-stream'
+        )
 
         "#{base_url}/index.html"
       end
@@ -36,22 +49,23 @@ module BlastOff
         "http://#{@bucket}.qiniudn.com/#{base_path}"
       end
 
-      def upload_string(string, key)
+      def upload_string(string, key, mime_type)
         file = Tempfile.new(key)
         begin
           file.write(string)
           file.rewind
-          upload_file(file.path, key)
+          upload_file(file.path, key, mime_type)
         ensure
           file.close
           file.unlink
         end
       end
 
-      def upload_file(filepath, key)
+      def upload_file(filepath, key, mime_type)
         ::Qiniu::RS.upload_file(
           uptoken: @upload_token,
           file: filepath,
+          mime_type: mime_type,
           bucket: @bucket,
           key: "#{base_path}/#{key}"
         )

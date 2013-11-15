@@ -2,6 +2,8 @@
 
 ## master
 
+* Set correct file mime-types.
+
 ## [v0.2.0](https://github.com/linjunpop/blast_off/tree/v0.2.0)
 
 * Let services' `generate` method return URL address.
