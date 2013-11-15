@@ -2,10 +2,8 @@ require 'cfpropertylist'
 
 module BlastOff
   class Template
-    def initialize(app_name:'', app_bundle_identifier:'', app_version:'')
-      @app_name = app_name
-      @app_bundle_identifier = app_bundle_identifier
-      @app_version = app_version
+    def initialize(ipa_file)
+      @ipa = ipa_file
     end
 
     def manifest_plist(ipa_file_url)
@@ -18,10 +16,10 @@ module BlastOff
             }
           ],
           metadata: {
-            'bundle-identifier' => @app_bundle_identifier,
-            'bundle-version' => @app_version,
+            'bundle-identifier' => @ipa.bundle_identifier,
+            'bundle-version' => @ipa.version,
             kind: 'software',
-            title: @app_name
+            title: @ipa.name
           }
         ]
       }.to_plist(plist_format: CFPropertyList::List::FORMAT_XML)
@@ -29,8 +27,7 @@ module BlastOff
 
     def html(manifest_plist_url)
       opts = OpenStruct.new({
-        app_name:  @app_name,
-        app_version: @app_version,
+        ipa: @ipa,
         manifest_plist_url: manifest_plist_url
       })
       template_file = File.join(File.dirname(File.expand_path(__FILE__)), 'template/index.html.erb')

@@ -72,11 +72,7 @@ module BlastOff
       end
 
       def template
-        @template ||= Template.new(
-          app_name: @ipa_file.name,
-          app_bundle_identifier: @ipa_file.bundle_identifier,
-          app_version: @ipa_file.version
-        )
+        @template ||= Template.new(@ipa_file)
       end
     end
   end

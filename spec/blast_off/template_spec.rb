@@ -2,12 +2,17 @@ require 'spec_helper'
 require 'nokogiri'
 
 describe BlastOff::Template do
-  let(:template) {
-    BlastOff::Template.new(
-      app_name: 'Foobar',
-      app_bundle_identifier: 'com.example.Foobar',
-      app_version: '1.0.0'
+  let(:ipa) {
+    double(
+      'IPA',
+      name: 'Foobar',
+      bundle_identifier: 'com.example.Foobar',
+      version: '2013',
+      short_version: '1.0.0'
     )
+  }
+  let(:template) {
+    BlastOff::Template.new(ipa)
   }
 
   describe '#html' do
@@ -23,7 +28,7 @@ describe BlastOff::Template do
     end
 
     it 'generate correct version' do
-      doc.at_css('h2').text.should eq 'Version: 1.0.0'
+      doc.at_css('h2').text.should eq 'Version: 1.0.0 (2013)'
     end
 
     it 'generate correct title' do
@@ -54,7 +59,7 @@ describe BlastOff::Template do
       element = doc.
         at_xpath('//key[contains(text(),"bundle-version")]').
         next_element
-      element.text.should eq '1.0.0'
+      element.text.should eq '2013'
     end
 
     it 'generate correct title' do

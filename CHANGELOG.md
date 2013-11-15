@@ -3,6 +3,7 @@
 ## master
 
 * Set correct file mime-types.
+* Also include App short version on web page.
 
 ## [v0.2.0](https://github.com/linjunpop/blast_off/tree/v0.2.0)
 

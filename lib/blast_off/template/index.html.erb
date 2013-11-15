@@ -33,14 +33,14 @@
       }
     </style>
 
-    <title><%= app_name %></title>
+    <title><%= ipa.name %> | <%= ipa.short_version %> (<%= ipa.version %>)</title>
   </head>
 
   <body>
     <div class="container">
-      <h1><%= app_name %></h1>
+      <h1><%= ipa.name %></h1>
       <img src="http://api.qrserver.com/v1/create-qr-code/?size=250x250&data=<%= manifest_plist_url %>" alt="" />
-      <h2>Version: <%= app_version %></h2>
+      <h2>Version: <%= ipa.short_version %> (<%= ipa.version %>)</h2>
       <p>
         <a class="button" href="itms-services://?action=download-manifest&url=<%= manifest_plist_url %>">Install</a>
       </p>
