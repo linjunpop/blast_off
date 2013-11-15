@@ -1,4 +1,5 @@
 require 'cfpropertylist'
+require 'uri'
 
 module BlastOff
   class Template
@@ -28,7 +29,9 @@ module BlastOff
     def html(manifest_plist_url)
       opts = OpenStruct.new({
         ipa: @ipa,
-        manifest_plist_url: manifest_plist_url
+        install_url: URI.escape(
+          "itms-services://?action=download-manifest&url=#{manifest_plist_url}"
+        )
       })
       template_file = File.join(File.dirname(File.expand_path(__FILE__)), 'template/index.html.erb')
 
