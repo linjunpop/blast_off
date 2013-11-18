@@ -16,7 +16,6 @@ module BlastOff
           access_key: access_key,
           secret_key: secret_key
         )
-        @upload_token = ::Qiniu::RS.generate_upload_token(scope: @bucket)
       end
 
       def distribute
@@ -49,25 +48,29 @@ module BlastOff
         "http://#{@bucket}.qiniudn.com/#{base_path}"
       end
 
-      def upload_string(string, key, mime_type)
-        file = Tempfile.new(key)
+      def upload_string(string, name, mime_type)
+        file = Tempfile.new(name)
         begin
           file.write(string)
           file.rewind
-          upload_file(file.path, key, mime_type)
+          upload_file(file.path, name, mime_type)
         ensure
           file.close
           file.unlink
         end
       end
 
-      def upload_file(filepath, key, mime_type)
+      def upload_file(filepath, name, mime_type)
+        key = "#{base_path}/#{name}"
+        upload_token = ::Qiniu::RS.generate_upload_token(
+          scope: "#{@bucket}:#{key}"
+        )
         ::Qiniu::RS.upload_file(
-          uptoken: @upload_token,
+          uptoken: upload_token,
           file: filepath,
           mime_type: mime_type,
           bucket: @bucket,
-          key: "#{base_path}/#{key}"
+          key: key
         )
       end
 
