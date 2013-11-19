@@ -3,6 +3,7 @@
 ## master
 
 * Generate upload token based on bucket and key.
+* Set `block_size` larger than IPA file size, prevent Qiniu SDK to split files.
 
 ## [v0.3.0](https://github.com/linjunpop/blast_off/tree/v0.3.0)
 

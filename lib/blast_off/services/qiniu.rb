@@ -13,6 +13,7 @@ module BlastOff
 
         ::Qiniu::RS.establish_connection!(
           enable_debug: false,
+          block_size: File.size(@ipa_file_path) + 100,
           access_key: access_key,
           secret_key: secret_key
         )
