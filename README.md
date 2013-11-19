@@ -72,6 +72,7 @@ Example:
 ## Similar projects:
 
 * https://github.com/lexrus/ios-makefile
+* https://github.com/qdvictory/EasyToMore
 
 ## Contributing
 
