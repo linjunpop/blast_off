@@ -1,4 +1,4 @@
-# BlastOff
+# BlastOff :rocket:
 
 An iOS beta distribution tool.
 
