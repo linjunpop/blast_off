@@ -6,10 +6,12 @@ require 'erb'
 module BlastOff
   module Services
     class Qiniu
-      def initialize(ipa_file_path:nil, access_key:'', secret_key:'', bucket:'')
+      def initialize(ipa_file_path:nil, access_key:'', secret_key:'', bucket:'', custom_domain:'', use_secure_connection:true)
         @ipa_file_path = ipa_file_path
         @ipa_file = ::IpaReader::IpaFile.new(ipa_file_path)
         @bucket = bucket
+        @custom_domain = custom_domain || "#{@bucket}.qiniudn.com"
+        @use_secure_connection = use_secure_connection
 
         ::Qiniu::RS.establish_connection!(
           enable_debug: false,
@@ -46,7 +48,11 @@ module BlastOff
       end
 
       def base_url
-        "http://#{@bucket}.qiniudn.com/#{base_path}"
+        "#{protocal}://#{@custom_domain}/#{base_path}"
+      end
+
+      def protocal
+        @use_secure_connection ? "https" : "http"
       end
 
       def upload_string(string, name, mime_type)
