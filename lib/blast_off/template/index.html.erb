@@ -39,11 +39,11 @@
   <body>
     <div class="container">
       <h1><%= ipa.name %></h1>
-      <div class="qr-image"></div>
       <h2>Version: <%= ipa.short_version %> (<%= ipa.version %>)</h2>
       <p>
         <a class="button" href="<%= install_url %>">Install</a>
       </p>
+      <div class="qr-image"></div>
     </div>
     <script type="text/javascript" charset="utf-8">
       var qrImageUrl = "http://api.qrserver.com/v1/create-qr-code/?size=250x250&data=" + document.URL;
