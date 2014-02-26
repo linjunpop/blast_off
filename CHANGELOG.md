@@ -2,6 +2,8 @@
 
 ## master
 
+## [v0.5.0](https://github.com/linjunpop/blast_off/tree/v0.5.0)
+
 * Move QR image to the bottom of page.
 * [Qiniu] Custom domain and secure connection.
 
